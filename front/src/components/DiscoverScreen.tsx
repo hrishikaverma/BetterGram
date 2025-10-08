@@ -148,13 +148,14 @@ const DiscoverScreen: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto pb-20 md:pb-4 md:ml-64 pt-20 md:pt-0">
-      {/* Header */}
-      <motion.div 
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="sticky top-0 bg-background/80 backdrop-blur-lg border-b z-10 p-4"
-      >
+    <div className="w-full pb-20 md:pb-8 md:ml-64">
+      <div className="max-w-4xl mx-auto pt-20 md:pt-4">
+        {/* Header */}
+        <motion.div 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="sticky top-16 md:top-0 bg-background/80 backdrop-blur-lg border-b z-10 p-4"
+        >
         <div className="flex items-center gap-4 mb-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -204,7 +205,7 @@ const DiscoverScreen: React.FC = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <TrendingUp className="w-5 h-5 text-orange-500" />
-                <h2 className="text-lg font-semibold">Trending Posts</h2>
+                <h2 className="text-foreground">Trending Posts</h2>
               </div>
               
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -251,7 +252,7 @@ const DiscoverScreen: React.FC = () => {
           <TabsContent value="people" className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <Users className="w-5 h-5 text-blue-500" />
-              <h2 className="text-lg font-semibold">Suggested for You</h2>
+              <h2 className="text-foreground">Suggested for You</h2>
             </div>
             
             {suggestedUsers.map((user, index) => (
@@ -270,7 +271,7 @@ const DiscoverScreen: React.FC = () => {
                     
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <h3 className="font-semibold">{user.name}</h3>
+                        <h3 className="font-semibold text-foreground">{user.name}</h3>
                         {user.isVerified && (
                           <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
                             <div className="w-2 h-2 bg-white rounded-full" />
@@ -279,7 +280,7 @@ const DiscoverScreen: React.FC = () => {
                       </div>
                       <p className="text-sm text-muted-foreground">@{user.username}</p>
                       <div className="flex items-center gap-4 mt-1">
-                        <span className="text-sm font-medium">{user.followers} followers</span>
+                        <span className="text-sm font-medium text-foreground">{user.followers} followers</span>
                         <Badge variant="outline" className="text-xs">
                           {user.category}
                         </Badge>
@@ -297,7 +298,7 @@ const DiscoverScreen: React.FC = () => {
           <TabsContent value="hashtags" className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <Hash className="w-5 h-5 text-green-500" />
-              <h2 className="text-lg font-semibold">Trending Hashtags</h2>
+              <h2 className="text-foreground">Trending Hashtags</h2>
             </div>
             
             <div className="grid gap-3">
@@ -331,7 +332,7 @@ const DiscoverScreen: React.FC = () => {
           <TabsContent value="events" className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <Calendar className="w-5 h-5 text-purple-500" />
-              <h2 className="text-lg font-semibold">Nearby Events</h2>
+              <h2 className="text-foreground">Nearby Events</h2>
             </div>
             
             {nearbyEvents.map((event, index) => (
@@ -350,7 +351,7 @@ const DiscoverScreen: React.FC = () => {
                     />
                     
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-1">{event.title}</h3>
+                      <h3 className="font-semibold mb-1 text-foreground">{event.title}</h3>
                       
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                         <MapPin className="w-4 h-4" />
@@ -363,7 +364,7 @@ const DiscoverScreen: React.FC = () => {
                       </div>
                       
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-sm">
+                        <div className="flex items-center gap-2 text-sm text-foreground">
                           <Users className="w-4 h-4" />
                           <span>{event.attendees} going</span>
                         </div>
@@ -378,6 +379,7 @@ const DiscoverScreen: React.FC = () => {
             ))}
           </TabsContent>
         </Tabs>
+      </div>
       </div>
     </div>
   );

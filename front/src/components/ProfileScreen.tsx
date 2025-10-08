@@ -41,8 +41,9 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({ userId }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 pb-20 md:pb-4">
-      {/* Profile Header */}
+    <div className="w-full pb-20 md:pb-8 md:ml-64">
+      <div className="max-w-4xl mx-auto p-4 pt-20 md:pt-4">
+        {/* Profile Header */}
       <div className="flex flex-col md:flex-row gap-8 mb-8">
         <div className="flex justify-center md:justify-start">
           <div className="relative">
@@ -64,7 +65,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({ userId }) => {
         <div className="flex-1 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="flex items-center gap-3">
-              <h1 className="text-xl font-normal">{profileUser.username}</h1>
+              <h1 className="text-foreground">{profileUser.username}</h1>
               {profileUser.isVerified && (
                 <Badge variant="secondary" className="h-5 w-5 rounded-full p-0 bg-primary text-primary-foreground">
                   ✓
@@ -108,30 +109,30 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({ userId }) => {
           {/* Stats */}
           <div className="flex gap-8 text-center md:text-left">
             <div className="cursor-pointer">
-              <span className="font-semibold block">{profileUser.posts.toLocaleString()}</span>
+              <span className="font-semibold block text-foreground">{profileUser.posts.toLocaleString()}</span>
               <span className="text-muted-foreground text-sm">posts</span>
             </div>
             <div 
               className="cursor-pointer"
               onClick={() => setFollowersDialogOpen(true)}
             >
-              <span className="font-semibold block">{profileUser.followers.toLocaleString()}</span>
+              <span className="font-semibold block text-foreground">{profileUser.followers.toLocaleString()}</span>
               <span className="text-muted-foreground text-sm">followers</span>
             </div>
             <div 
               className="cursor-pointer"
               onClick={() => setFollowingDialogOpen(true)}
             >
-              <span className="font-semibold block">{profileUser.following.toLocaleString()}</span>
+              <span className="font-semibold block text-foreground">{profileUser.following.toLocaleString()}</span>
               <span className="text-muted-foreground text-sm">following</span>
             </div>
           </div>
 
           {/* Bio */}
           <div>
-            <h2 className="font-semibold">{profileUser.displayName}</h2>
+            <h2 className="font-semibold text-foreground">{profileUser.displayName}</h2>
             {profileUser.bio && (
-              <p className="text-sm mt-1 whitespace-pre-line">{profileUser.bio}</p>
+              <p className="text-sm mt-1 whitespace-pre-line text-foreground">{profileUser.bio}</p>
             )}
           </div>
         </div>
@@ -303,6 +304,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({ userId }) => {
           </div>
         </DialogContent>
       </Dialog>
+      </div>
     </div>
   );
 };

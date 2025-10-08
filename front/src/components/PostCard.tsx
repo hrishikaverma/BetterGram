@@ -71,7 +71,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post }) => {
           </Avatar>
           <div className="flex flex-col">
             <div className="flex items-center gap-1">
-              <span className="font-semibold text-sm">{post.author.username}</span>
+              <span className="font-semibold text-sm text-foreground">{post.author.username}</span>
               {post.author.isVerified && (
                 <Badge variant="secondary" className="h-4 w-4 rounded-full p-0 bg-primary text-primary-foreground">
                   ✓
@@ -164,15 +164,15 @@ export const PostCard: React.FC<PostCardProps> = ({ post }) => {
 
         {/* Likes Count */}
         <div className="mb-2">
-          <span className="font-semibold text-sm">
+          <span className="font-semibold text-sm text-foreground">
             {post.likes.toLocaleString()} likes
           </span>
         </div>
 
         {/* Caption */}
         <div className="mb-2">
-          <span className="font-semibold text-sm mr-2">{post.author.username}</span>
-          <span className="text-sm">{post.caption}</span>
+          <span className="font-semibold text-sm mr-2 text-foreground">{post.author.username}</span>
+          <span className="text-sm text-foreground">{post.caption}</span>
         </div>
 
         {/* Comments */}
