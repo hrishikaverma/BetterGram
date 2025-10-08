@@ -38,25 +38,25 @@ const EnhancedHomeFeed: React.FC = () => {
   const QuickStats = () => (
     <Card className="mx-4 mb-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-0">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="font-semibold flex items-center gap-2">
+        <h3 className="font-semibold flex items-center gap-2 text-foreground">
           <Star className="w-5 h-5 text-yellow-500" />
           Your Day
         </h3>
-        <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+        <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300">
           Active
         </Badge>
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div className="text-center">
-          <div className="text-2xl font-bold text-purple-600">{streakCount}</div>
+          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{streakCount}</div>
           <div className="text-xs text-muted-foreground">Day Streak</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-pink-600">12</div>
+          <div className="text-2xl font-bold text-pink-600 dark:text-pink-400">12</div>
           <div className="text-xs text-muted-foreground">Interactions</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-indigo-600">5</div>
+          <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">5</div>
           <div className="text-xs text-muted-foreground">New Followers</div>
         </div>
       </div>
@@ -75,7 +75,7 @@ const EnhancedHomeFeed: React.FC = () => {
         >
           <Card className="p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold flex items-center gap-2">
+              <h3 className="font-semibold flex items-center gap-2 text-foreground">
                 <TrendingUp className="w-5 h-5 text-orange-500" />
                 Trending Now
               </h3>
@@ -112,7 +112,7 @@ const EnhancedHomeFeed: React.FC = () => {
           <Zap className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="font-semibold">Daily Challenge</h3>
+          <h3 className="font-semibold text-foreground">Daily Challenge</h3>
           <p className="text-sm text-muted-foreground">Share a moment of gratitude</p>
         </div>
       </div>
@@ -154,7 +154,7 @@ const EnhancedHomeFeed: React.FC = () => {
       <Card className="mx-4 mb-4 p-4">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <h3 className="font-semibold">Live Activity</h3>
+          <h3 className="font-semibold text-foreground">Live Activity</h3>
         </div>
         <div className="space-y-2">
           {activities.slice(0, 3).map((activity) => (
@@ -164,7 +164,7 @@ const EnhancedHomeFeed: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center justify-between text-sm"
             >
-              <span>{activity.text}</span>
+              <span className="text-foreground">{activity.text}</span>
               <span className="text-muted-foreground">{activity.time}</span>
             </motion.div>
           ))}
@@ -178,7 +178,7 @@ const EnhancedHomeFeed: React.FC = () => {
     <Card className="mx-4 mb-4 p-4">
       <div className="flex items-center gap-2 mb-3">
         <MapPin className="w-5 h-5 text-red-500" />
-        <h3 className="font-semibold">Nearby Events</h3>
+        <h3 className="font-semibold text-foreground">Nearby Events</h3>
       </div>
       <div className="space-y-3">
         <div className="flex items-center gap-3">
@@ -186,7 +186,7 @@ const EnhancedHomeFeed: React.FC = () => {
             <Calendar className="w-4 h-4 text-white" />
           </div>
           <div className="flex-1">
-            <p className="font-medium text-sm">Photography Meetup</p>
+            <p className="font-medium text-sm text-foreground">Photography Meetup</p>
             <p className="text-xs text-muted-foreground">Central Park • Today 6 PM</p>
           </div>
           <Button size="sm" variant="outline">Join</Button>
@@ -196,25 +196,26 @@ const EnhancedHomeFeed: React.FC = () => {
   );
 
   return (
-    <div className="max-w-lg mx-auto pb-20 md:pb-4 md:ml-64">
-      {/* Enhanced Header */}
-      <div className="sticky top-0 bg-background/80 backdrop-blur-lg border-b z-10 p-4">
-        <div className="flex items-center justify-between mb-2">
-          <div>
-            <h1 className="text-xl font-bold">Good Morning! 👋</h1>
-            <p className="text-sm text-muted-foreground">Feeling {todayMood} today</p>
+    <div className="w-full pb-20 md:pb-8 md:ml-64">
+      <div className="max-w-2xl mx-auto px-0 pt-20 md:pt-4">
+        {/* Enhanced Header */}
+        <div className="sticky top-16 md:top-0 bg-background/80 backdrop-blur-lg border-b z-10 p-4">
+          <div className="flex items-center justify-between mb-2">
+            <div>
+              <h1 className="text-foreground">Good Morning! 👋</h1>
+              <p className="text-sm text-muted-foreground">Feeling {todayMood} today</p>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              className="gap-2"
+            >
+              <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+            </Button>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleRefresh}
-            disabled={isRefreshing}
-            className="gap-2"
-          >
-            <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-          </Button>
         </div>
-      </div>
 
       {/* Stories Section */}
       <StoriesCarousel />
@@ -248,28 +249,29 @@ const EnhancedHomeFeed: React.FC = () => {
         ))}
       </div>
 
-      {/* Load More */}
-      <div className="p-6 text-center">
-        <Button variant="outline" onClick={() => console.log('Load more posts')} className="gap-2">
-          <Flame className="w-4 h-4" />
-          Discover More
-        </Button>
-      </div>
+        {/* Load More */}
+        <div className="p-6 text-center">
+          <Button variant="outline" onClick={() => console.log('Load more posts')} className="gap-2">
+            <Flame className="w-4 h-4" />
+            Discover More
+          </Button>
+        </div>
 
-      {/* Floating Action Hints */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 2, duration: 0.5 }}
-        className="fixed bottom-24 right-4 md:bottom-8"
-      >
-        <div className="bg-primary text-primary-foreground p-3 rounded-full shadow-lg">
-          <Gift className="w-5 h-5" />
-        </div>
-        <div className="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
-          <span className="text-xs text-white">1</span>
-        </div>
-      </motion.div>
+        {/* Floating Action Hints */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 2, duration: 0.5 }}
+          className="fixed bottom-24 right-4 md:bottom-8 md:right-8"
+        >
+          <div className="bg-primary text-primary-foreground p-3 rounded-full shadow-lg">
+            <Gift className="w-5 h-5" />
+          </div>
+          <div className="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+            <span className="text-xs text-white">1</span>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };
